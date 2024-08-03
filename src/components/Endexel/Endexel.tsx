@@ -1,9 +1,9 @@
 import React from "react";
 import HomePage from "./HomePage";
-import Card from "./Cards";
+import Cards from "./Cards";
 import AboutCourse from "./AboutCourse";
 
-const Home: React.FC = () => {
+const Endexel: React.FC = () => {
   return (
     <div className="flex flex-col w-[100%]">
       <div
@@ -13,11 +13,11 @@ const Home: React.FC = () => {
         }}
       >
         <HomePage />
-        <Card />
+        <Cards />
       </div>
       <AboutCourse />
     </div>
   );
 };
 
-export default Home;
+export default Endexel;
