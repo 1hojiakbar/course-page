@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         "darkblue-color": "#383b93",
         "teal-bg": "#18cfa5",
+        "button-bg": "#e11d48",
+        "secondary-color": "#6e6e77",
+        "outer-bg": "#f4f4f5",
       },
       screens: {
         sm: "640px",
