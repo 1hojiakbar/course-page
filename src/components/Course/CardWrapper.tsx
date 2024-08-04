@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import img from "../../assets/images/image.jpg";
-import CourseCard from "../Card/Card";
+import CourseCard from "../Generic/Card/Card";
 import Course_URL from "../../mock/API";
 import "./style.css";
 
@@ -37,7 +37,7 @@ const CardWrapper: React.FC = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-3">
+    <div className="w-full mx-auto">
       <div className="grid gap-4">
         {loading ? (
           <p>Loading...</p>
