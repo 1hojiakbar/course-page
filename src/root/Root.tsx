@@ -9,7 +9,7 @@ const Root: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<Navbar />}>
-          <Route path="endexel" element={<Endexel />} />
+          <Route path="/endexel" element={<Endexel />} />
         </Route>
         <Route path="/" element={<CoursePage />} />
         <Route path="*" element={<Navigate to="/" />} />
