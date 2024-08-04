@@ -1,34 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import img from "../../assets/images/image.jpg";
 import CourseCard from "../Generic/Card/Card";
-import Course_URL from "../../mock/API";
 import "./style.css";
-
-interface Course {
-  course_id: string;
-  title: string;
-  price: string;
-  image: string;
-  descr: string;
-}
+import { useFilterContext } from "../../context/FilterProvider";
 
 const CardWrapper: React.FC = () => {
-  const [data, setData] = useState<Course[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const { state, dispatch } = useFilterContext();
 
   const getData = async () => {
     try {
-      const response = await fetch(Course_URL);
+      const response = await fetch(
+        "https://backend-api.educore-org.uz/api/get/landing/all/courses"
+      );
       const res = await response.json();
       if (Array.isArray(res.Courses)) {
-        setData(res.Courses);
+        dispatch({ type: "SET_COURSES", payload: res.Courses });
       }
     } catch (error) {
       console.error(error);
-      setError("Failed to fetch data");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -38,13 +27,11 @@ const CardWrapper: React.FC = () => {
 
   return (
     <div className="w-full mx-auto">
-      <div className="grid gap-4">
-        {loading ? (
-          <p>Loading...</p>
-        ) : error ? (
-          <p>{error}</p>
+      <div className="grid gap-8">
+        {state.filteredCourses.length === 0 ? (
+          <p>No courses found</p>
         ) : (
-          data?.map((card) => (
+          state.filteredCourses.map((card) => (
             <CourseCard
               key={card.course_id}
               imageUrl={img}

@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { useFilterContext } from "../../context/FilterProvider";
 
 const Title: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const { dispatch } = useFilterContext();
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+    dispatch({ type: "FILTER_COURSES", payload: value });
+  };
+
   return (
     <div className="w-[80%] bg-outer-bg pt-[100px]">
       <div className="flex items-center flex-col text-center">
@@ -33,8 +42,13 @@ const Title: React.FC = () => {
               type="text"
               placeholder="Search courses..."
               className="px-4 py-2 outline-none rounded-lg flex-1 border"
+              value={searchTerm}
+              onChange={(e) => handleSearch(e.target.value)}
             />
-            <button className="px-8 py-2 bg-button-bg text-white rounded-lg w-full sm:w-auto">
+            <button
+              className="px-8 py-2 bg-button-bg text-white rounded-lg w-full sm:w-auto"
+              onClick={() => handleSearch(searchTerm)}
+            >
               Search
             </button>
           </div>
