@@ -1,5 +1,5 @@
 import React from "react";
-import CoursePage from "../components/Course";
+import CoursePage from "../components/Course/index";
 import Navbar from "../components/Navbar/Navbar";
 import Endexel from "../components/Endexel/Endexel";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
