@@ -12,6 +12,7 @@ interface Course {
   price: number;
   image: string;
   descr: string;
+  period: number;
 }
 
 interface CourseState {

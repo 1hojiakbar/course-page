@@ -60,8 +60,8 @@ const Filter: React.FC = () => {
             />
             <span className="ml-2">
               {price === "300-above"
-                ? "$300 and above"
-                : `$${price.split("-")[0]} - $${price.split("-")[1]}`}
+                ? "300 and above"
+                : `${price.split("-")[0]} - ${price.split("-")[1]}`}
             </span>
           </label>
         ))}

@@ -7,6 +7,7 @@ interface CardProps {
   description: string;
   price: string;
   buttonText: string;
+  month: string;
 }
 
 const formatPrice = (price: string) => {
@@ -24,6 +25,7 @@ const Card: React.FC<CardProps> = ({
   description,
   price,
   buttonText,
+  month,
 }) => {
   return (
     <div className="w-full flex flex-col rounded overflow-hidden shadow-lg shadow-gray-400 bg-white border h-[440px]">
@@ -35,7 +37,9 @@ const Card: React.FC<CardProps> = ({
         <p className="text-gray-700 text-base description">{description}</p>
       </div>
       <div className="px-3 py-2 pb-2 mt-auto flex items-center justify-between">
-        <span className="font-semibold text-xl">${formatPrice(price)}</span>
+        <div className="font-semibold text-md whitespace-nowrap">
+          {formatPrice(price)} UZS / {month} month
+        </div>
         <button className="bg-button-bg text-white px-4 py-2 rounded-lg">
           {buttonText}
         </button>

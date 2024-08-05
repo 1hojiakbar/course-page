@@ -1,3 +1,20 @@
+.body {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 98%;
+  @media (min-width: 1201px) {
+    grid-template-columns: 23% 75%;
+  }
+  @media (max-width: 1110px) {
+    grid-template-columns: 23% 75%;
+    width: 100%;
+  }
+  @media (max-width: 1110px) {
+    grid-template-columns: 1fr;
+    width: 98%;
+  }
+}
+
 .grid {
   display: grid;
   align-items: flex-start;

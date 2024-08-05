@@ -27,7 +27,6 @@ const CardWrapper: React.FC = () => {
     getData();
   }, []);
 
-  // Get current cards
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = state.filteredCourses.slice(
@@ -35,12 +34,11 @@ const CardWrapper: React.FC = () => {
     indexOfLastCard
   );
 
-  // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <div className="w-full mx-auto">
-      <div className="grid gap-8">
+      <div className="grid gap-y-8 gap-x-2">
         {currentCards.length === 0 ? (
           <h2 className="text-black text-xl text-center font-semibold">
             No courses found
@@ -52,6 +50,7 @@ const CardWrapper: React.FC = () => {
               imageUrl={img}
               title={card.title}
               description={card.descr}
+              month={String(card.period)}
               price={String(card.price)}
               buttonText="Enroll"
             />
