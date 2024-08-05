@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "./Title";
 import Body from "./Body";
-import { CourseProvider } from "../../context/FilterProvider";
+import { CourseProvider } from "../../context/FilterContext";
 
 const CoursePage: React.FC = () => {
   return (

@@ -2,19 +2,18 @@ import React, { useEffect } from "react";
 import img from "../../assets/images/image.jpg";
 import CourseCard from "../Generic/Card/Card";
 import "./style.css";
-import { useFilterContext } from "../../context/FilterProvider";
+import { useFilterContext } from "../../context/FilterContext";
+import Course_URL from "../../mock/API";
 
 const CardWrapper: React.FC = () => {
   const { state, dispatch } = useFilterContext();
 
   const getData = async () => {
     try {
-      const response = await fetch(
-        "https://backend-api.educore-org.uz/api/get/landing/all/courses"
-      );
+      const response = await fetch(Course_URL);
       const res = await response.json();
       if (Array.isArray(res.Courses)) {
-        dispatch({ type: "SET_COURSES", payload: res.Courses });
+        dispatch({ type: "SetCourses", payload: res.Courses });
       }
     } catch (error) {
       console.error(error);
@@ -29,7 +28,9 @@ const CardWrapper: React.FC = () => {
     <div className="w-full mx-auto">
       <div className="grid gap-8">
         {state.filteredCourses.length === 0 ? (
-          <p>No courses found</p>
+          <h2 className="text-black text-xl text-center font-semibold">
+            No courses found
+          </h2>
         ) : (
           state.filteredCourses.map((card) => (
             <CourseCard

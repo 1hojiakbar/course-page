@@ -9,6 +9,15 @@ interface CardProps {
   buttonText: string;
 }
 
+const formatPrice = (price: string) => {
+  const priceValue = String(price);
+  const [integer, decimal] = priceValue.split(".");
+
+  const formattedInteger = integer.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  return decimal ? `${formattedInteger}.${decimal}` : formattedInteger;
+};
+
 const Card: React.FC<CardProps> = ({
   imageUrl,
   title,
@@ -26,7 +35,7 @@ const Card: React.FC<CardProps> = ({
         <p className="text-gray-700 text-base description">{description}</p>
       </div>
       <div className="px-3 py-2 pb-2 mt-auto flex items-center justify-between">
-        <span className="font-semibold text-xl">${price}</span>
+        <span className="font-semibold text-xl">${formatPrice(price)}</span>
         <button className="bg-button-bg text-white px-4 py-2 rounded-lg">
           {buttonText}
         </button>

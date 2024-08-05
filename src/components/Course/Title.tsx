@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useFilterContext } from "../../context/FilterProvider";
+import { useFilterContext } from "../../context/FilterContext";
 
 const Title: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -7,7 +7,11 @@ const Title: React.FC = () => {
 
   const handleSearch = (value: string) => {
     setSearchTerm(value);
-    dispatch({ type: "FILTER_COURSES", payload: value });
+    dispatch({ type: "filter" });
+  };
+
+  const handleFilter = (value: string) => {
+    dispatch({ type: "filter", payload: value });
   };
 
   return (
@@ -47,7 +51,7 @@ const Title: React.FC = () => {
             />
             <button
               className="px-8 py-2 bg-button-bg text-white rounded-lg w-full sm:w-auto"
-              onClick={() => handleSearch(searchTerm)}
+              onClick={() => handleFilter(searchTerm)}
             >
               Search
             </button>

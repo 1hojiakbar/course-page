@@ -9,7 +9,7 @@ import React, {
 interface Course {
   course_id: string;
   title: string;
-  price: string;
+  price: number;
   image: string;
   descr: string;
 }
@@ -42,13 +42,13 @@ const courseReducer = (
   action: CourseAction
 ): CourseState => {
   switch (action.type) {
-    case "SET_COURSES":
+    case "SetCourses":
       return {
         ...state,
         courses: action.payload,
         filteredCourses: action.payload,
       };
-    case "FILTER_COURSES":
+    case "filter":
       return {
         ...state,
         filteredCourses: action.payload
@@ -56,6 +56,32 @@ const courseReducer = (
               course.title.toLowerCase().includes(action.payload.toLowerCase())
             )
           : state.courses,
+      };
+    case "PRICE_FILTER":
+      const priceRanges = action.payload;
+      if (priceRanges.length === 0) {
+        return {
+          ...state,
+          filteredCourses: state.courses,
+        };
+      }
+      const filteredCourses = state.courses.filter((course) => {
+        const coursePrice =
+          typeof course.price === "string"
+            ? parseFloat(String(course?.price).replace(/\s/g, ""))
+            : course.price;
+        return priceRanges.some((range: string) => {
+          if (range === "300-above") {
+            return coursePrice >= 300;
+          } else {
+            const [min, max] = range.split("-").map(Number);
+            return coursePrice >= min && coursePrice <= max;
+          }
+        });
+      });
+      return {
+        ...state,
+        filteredCourses,
       };
     default:
       return state;
