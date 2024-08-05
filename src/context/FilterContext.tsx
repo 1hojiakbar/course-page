@@ -72,8 +72,8 @@ const courseReducer = (
             ? parseFloat(String(course?.price).replace(/\s/g, ""))
             : course.price;
         return priceRanges.some((range: string) => {
-          if (range === "300-above") {
-            return coursePrice >= 300;
+          if (range === "1500000+") {
+            return coursePrice >= 1500000;
           } else {
             const [min, max] = range.split("-").map(Number);
             return coursePrice >= min && coursePrice <= max;

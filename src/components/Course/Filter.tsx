@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useFilterContext } from "../../context/FilterContext";
+import { priceFilter } from "../../utils/priceFilter";
 
 const Filter: React.FC = () => {
   const { dispatch } = useFilterContext();
@@ -50,7 +51,7 @@ const Filter: React.FC = () => {
 
       <h2 className="text-2xl font-semibold mb-4">Price Range</h2>
       <div className="mb-4">
-        {["0-99", "100-199", "200-299", "300-above"].map((price) => (
+        {priceFilter.map((price) => (
           <label key={price} className="flex items-center mb-2">
             <input
               type="checkbox"
@@ -59,9 +60,9 @@ const Filter: React.FC = () => {
               onChange={handleCheckboxChange}
             />
             <span className="ml-2">
-              {price === "300-above"
-                ? "300 and above"
-                : `${price.split("-")[0]} - ${price.split("-")[1]}`}
+              {price === "1500000+"
+                ? "1500 000+"
+                : `${price.split("-")[0]} - ${price && price?.split("-")[1]}`}
             </span>
           </label>
         ))}
