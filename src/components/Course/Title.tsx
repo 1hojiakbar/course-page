@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import typeFilter from "../../utils/typeFilter";
+import "./style.css";
 import { useFilterContext } from "../../context/FilterContext";
 
 const Title: React.FC = () => {
@@ -43,14 +44,14 @@ const Title: React.FC = () => {
           Find the perfect course to expand your knowledge and skills.
         </p>
         <div className="w-full lg::w-[70%] md:w-[80%]">
-          <div className="flex xl:flex-row lg:flex-row md:flex-row gap-3 flex-col justify-center mb-6 w-full">
+          <div className="btn-wrapper">
             {typeFilter.map((category) => (
               <button
                 key={category}
-                className={`flex lg:w-max md:w-max w-full px-5 rounded-md mx-auto py-2 text-center justify-center ${
+                className={`flex w-full whitespace-nowrap px-5 border h-max rounded-md mx-auto py-2 text-center justify-center ${
                   selectedCategories.includes(category)
                     ? "bg-button-bg text-white"
-                    : "btn-outlined"
+                    : "bg-white"
                 }`}
                 onClick={() => handleCategoryButtonClick(category)}
               >
