@@ -43,11 +43,11 @@ const Title: React.FC = () => {
           Find the perfect course to expand your knowledge and skills.
         </p>
         <div>
-          <div className="flex flex-wrap xl:flex-row lg:flex-row md:flex-row gap-3 flex-col justify-center mb-6 w-full">
+          <div className="flex xl:flex-row lg:flex-row md:flex-row gap-3 flex-col justify-center mb-6 w-full">
             {typeFilter.map((category) => (
               <button
                 key={category}
-                className={`flex pl-4 rounded-sm w-full shadow-sm mx-auto py-2 text-center justify-center hover:shadow-md ${
+                className={`flex w-max px-5 rounded-sm mx-auto py-2 text-center justify-center ${
                   selectedCategories.includes(category)
                     ? "bg-button-bg text-white"
                     : "btn-outlined"
