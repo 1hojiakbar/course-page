@@ -1,5 +1,6 @@
 import React from "react";
 import "../../Course/style.css";
+import Course_Image_URL from "../../../mock/CourseImageAPI";
 
 interface CardProps {
   imageUrl: string;
@@ -29,7 +30,11 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div className="w-full flex flex-col rounded overflow-hidden shadow-lg shadow-gray-400 bg-white border h-[440px]">
-      <img className="w-full h-[250px]" src={imageUrl} alt={title} />
+      <img
+        className="w-full h-[250px]"
+        src={`${Course_Image_URL}/upload/${imageUrl}`}
+        alt={title}
+      />
       <div className="px-6 py-2">
         <div className="font-bold xl:text-xl text-lg md:text-[18px] lg:mb-2">
           {title}

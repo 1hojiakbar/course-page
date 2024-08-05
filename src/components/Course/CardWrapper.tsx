@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import img from "../../assets/images/image.jpg";
 import CourseCard from "../Generic/Card/Card";
 import "./style.css";
 import { useFilterContext } from "../../context/FilterContext";
@@ -47,7 +46,7 @@ const CardWrapper: React.FC = () => {
           currentCards.map((card) => (
             <CourseCard
               key={card.course_id}
-              imageUrl={img}
+              imageUrl={card.image}
               title={card.title}
               description={card.descr}
               month={String(card.period)}
