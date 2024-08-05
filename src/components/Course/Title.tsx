@@ -58,7 +58,7 @@ const Title: React.FC = () => {
               </button>
             ))}
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 md:w-full lg:w-full w-[100%] border-2 max-w-full lg:max-w-full justify-between">
+          <div className="flex flex-col sm:flex-row gap-3 md:w-full lg:w-full w-[100%] max-w-full lg:max-w-full justify-between">
             <input
               type="text"
               placeholder="Search courses..."
