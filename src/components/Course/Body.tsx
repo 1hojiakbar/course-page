@@ -5,7 +5,7 @@ import "./style.css";
 
 const Body: React.FC = () => {
   return (
-    <div className="justify-center pt-[80px] gap-2 body">
+    <div className="justify-center pt-[80px] body">
       <div className="flex w-full">
         <Filter />
       </div>

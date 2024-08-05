@@ -1,9 +1,28 @@
 import React, { useState } from "react";
 import { useFilterContext } from "../../context/FilterContext";
+import typeFilter from "../../utils/typeFilter";
 
 const Title: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { dispatch } = useFilterContext();
+
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  const handleCategoryButtonClick = (category: string) => {
+    let updatedSelectedCategories = [...selectedCategories];
+    if (updatedSelectedCategories.includes(category)) {
+      updatedSelectedCategories = updatedSelectedCategories.filter(
+        (item) => item !== category
+      );
+    } else {
+      updatedSelectedCategories.push(category);
+    }
+    setSelectedCategories(updatedSelectedCategories);
+    dispatch({
+      type: "CATEGORY_FILTER",
+      payload: updatedSelectedCategories,
+    });
+  };
 
   const handleSearch = (value: string) => {
     setSearchTerm(value);
@@ -15,7 +34,7 @@ const Title: React.FC = () => {
   };
 
   return (
-    <div className="w-[80%] bg-outer-bg pt-[100px]">
+    <div className="lg:w-[80%] md:w-[85%] w-[90%] bg-outer-bg pt-[100px]">
       <div className="flex items-center flex-col text-center">
         <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl mx-auto mb-6">
           Explore Our Courses
@@ -24,22 +43,20 @@ const Title: React.FC = () => {
           Find the perfect course to expand your knowledge and skills.
         </p>
         <div>
-          <div className="flex flex-wrap gap-3 justify-center mb-6 w-full">
-            <button className="px-4 whitespace-nowrap py-2 bg-white border rounded-lg text-black hover:bg-gray-100">
-              Web Development
-            </button>
-            <button className="px-4 whitespace-nowrap py-2 bg-white border rounded-lg text-black hover:bg-gray-100">
-              Data Science
-            </button>
-            <button className="px-4 whitespace-nowrap py-2 bg-white border rounded-lg text-black hover:bg-gray-100">
-              Business
-            </button>
-            <button className="px-4 whitespace-nowrap py-2 bg-white border rounded-lg text-black hover:bg-gray-100">
-              Design
-            </button>
-            <button className="px-4 whitespace-nowrap py-2 bg-white border rounded-lg text-black hover:bg-gray-100">
-              Personal Development
-            </button>
+          <div className="flex flex-wrap xl:flex-row lg:flex-row md:flex-row gap-3 flex-col justify-center mb-6 w-full">
+            {typeFilter.map((category) => (
+              <button
+                key={category}
+                className={`flex pl-4 rounded-sm w-full shadow-sm mx-auto py-2 text-center justify-center hover:shadow-md ${
+                  selectedCategories.includes(category)
+                    ? "bg-button-bg text-white"
+                    : "btn-outlined"
+                }`}
+                onClick={() => handleCategoryButtonClick(category)}
+              >
+                {category}
+              </button>
+            ))}
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full max-w-full lg:max-w-full justify-between">
             <input

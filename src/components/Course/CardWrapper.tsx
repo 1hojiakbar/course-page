@@ -3,7 +3,7 @@ import img from "../../assets/images/image.jpg";
 import CourseCard from "../Generic/Card/Card";
 import "./style.css";
 import { useFilterContext } from "../../context/FilterContext";
-import Course_URL from "../../mock/API";
+import Course_URL from "../../mock/CourseAPI";
 import Pagination from "./Pagination";
 
 const CardWrapper: React.FC = () => {

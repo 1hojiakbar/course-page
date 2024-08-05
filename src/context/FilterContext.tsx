@@ -12,6 +12,7 @@ interface Course {
   price: number;
   image: string;
   descr: string;
+  subject: string;
   period: number;
 }
 
@@ -66,7 +67,7 @@ const courseReducer = (
           filteredCourses: state.courses,
         };
       }
-      const filteredCourses = state.courses.filter((course) => {
+      const filteredCoursesByPrice = state.courses.filter((course) => {
         const coursePrice =
           typeof course.price === "string"
             ? parseFloat(String(course?.price).replace(/\s/g, ""))
@@ -82,7 +83,22 @@ const courseReducer = (
       });
       return {
         ...state,
-        filteredCourses,
+        filteredCourses: filteredCoursesByPrice,
+      };
+    case "CATEGORY_FILTER":
+      const selectedCategories = action.payload;
+      if (selectedCategories.length === 0) {
+        return {
+          ...state,
+          filteredCourses: state.courses,
+        };
+      }
+      const filteredCoursesByCategory = state.courses.filter((course) =>
+        selectedCategories.includes(course.subject)
+      );
+      return {
+        ...state,
+        filteredCourses: filteredCoursesByCategory,
       };
     default:
       return state;

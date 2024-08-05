@@ -1,4 +1,4 @@
-export const priceFilter = [
+export const priceFilter: string[] = [
   "0-300000",
   "300000-500000",
   "500000-750000",
