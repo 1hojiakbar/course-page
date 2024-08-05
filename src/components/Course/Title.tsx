@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useFilterContext } from "../../context/FilterContext";
 import typeFilter from "../../utils/typeFilter";
+import { useFilterContext } from "../../context/FilterContext";
 
 const Title: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -42,12 +42,12 @@ const Title: React.FC = () => {
         <p className="text-lg md:text-xl lg:text-2xl font-medium text-secondary-color mb-6">
           Find the perfect course to expand your knowledge and skills.
         </p>
-        <div>
+        <div className="w-full lg::w-[70%] md:w-[80%]">
           <div className="flex xl:flex-row lg:flex-row md:flex-row gap-3 flex-col justify-center mb-6 w-full">
             {typeFilter.map((category) => (
               <button
                 key={category}
-                className={`flex w-max px-5 rounded-sm mx-auto py-2 text-center justify-center ${
+                className={`flex lg:w-max md:w-max w-full px-5 rounded-md mx-auto py-2 text-center justify-center ${
                   selectedCategories.includes(category)
                     ? "bg-button-bg text-white"
                     : "btn-outlined"
@@ -58,7 +58,7 @@ const Title: React.FC = () => {
               </button>
             ))}
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-full lg:max-w-full justify-between">
+          <div className="flex flex-col sm:flex-row gap-3 md:w-full lg:w-full w-[100%] border-2 max-w-full lg:max-w-full justify-between">
             <input
               type="text"
               placeholder="Search courses..."
